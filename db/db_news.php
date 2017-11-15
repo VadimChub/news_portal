@@ -33,7 +33,10 @@ class db_news extends db
             return $stmt->fetchAll();
     }
 
-
+    /**
+     * @param $tags string with tags separedt with #sign
+     * @param $articleId int id of new the tags should be bind with
+     */
    public function saveTags ($tags, $articleId)
     {
         $tags = trim($tags);
@@ -61,7 +64,59 @@ class db_news extends db
         }
     }
 
+    /**
+     * @param array $categories
+     * @param $articleId int id of new the categories should be bind with
+     */
+    public function addNewsCategory (array $categories, $articleId)
+    {
+
+        //$dbObject = new db();
+        $connection = $this->getConnection();
+
+        foreach ($categories as $category){
+            //here we get id of needed category and put it on $caegoryId variable
+            $categoryIdQuery = $connection->query("SELECT id FROM categories WHERE category = '$category'");
+            $categoryIdArray = $categoryIdQuery->fetch();
+            $categoryId = $categoryIdArray['id'];
+            if($categoryId){
+                $connection->query("INSERT INTO news_categories (news_id, category_id) VALUES ('$articleId','$categoryId')");
+            }
+        }
+
+    }
+
+    //before to give argument check if file was uploaded with is_uploaded_file function!!!
+    /**
+     * @param $files array $_FILE
+     * @param $articleId int id of new the image should be bind with
+     */
+   public function addNewsImage ($files, $articleId)
+    {
+        //$dbObject = new db();
+        $connection = $this->getConnection();
+
+        $count = count($files['file']['name']);
+
+        for($i=0; $i<$count; $i++) {
+            $dirname = "../img/";
+            $fileName = md5(time()) . basename($files['file']['name'][$i]);
+            $uploadFile = $dirname . $fileName;
+            if (move_uploaded_file($files['file']['tmp_name'][$i], $uploadFile)) {
+                if($connection->query("INSERT INTO images (way) VALUES ('$uploadFile')")) {
+                    $imageIdQuery = $connection->query("SELECT id FROM images WHERE way = '$uploadFile'");
+                    $imageId = $imageIdQuery->fetch();
+                    if($imageId){
+                        $connection->query("INSERT INTO news_images (news_id, img_id) VALUES ('$articleId','$imageId[id]')");
+                    }
+                }
+            }
+        }
+    }
+
+
 }
+
 
 
 ?>

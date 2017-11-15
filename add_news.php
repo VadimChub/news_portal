@@ -17,14 +17,14 @@ use db\db_news;
 <div class="container">
     <div class="row">
 
-<form action="add_news.php" method="post" enctype="multipart/form-data">
+<form action="savers/save_new.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
-        <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect2">Choose the categories</label>
-        <select multiple class="form-control" id="exampleFormControlSelect2" name="categories[]">
+        <select multiple class="form-control" id="exampleFormControlSelect2" name="categories[]" required>
             <option>Politic</option>
             <option>Analitic</option>
             <option>Economic</option>
@@ -34,11 +34,11 @@ use db\db_news;
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Text</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text" required></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlFile1">Image</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file[]" multiple>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Tags</label>
@@ -47,22 +47,11 @@ use db\db_news;
     </div>
     <button type="submit" class="btn btn-primary">Add news</button>
 </form>
-<br>
-<br>
-        <?php
-        $obj = new db_news();
-        $obj->saveTags($_POST['tags'],1); ?>
+
+
 
     </div>
 </div>
-
-<?php
-
-
-
-
-
-?>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
