@@ -60,7 +60,7 @@ class category_builder
                                                       news.date
                                                       FROM news_categories 
                                                       JOIN news ON news.id = news_categories.news_id
-                                                      WHERE news_categories.category_id = '$categoryId' ORDER BY news.date");
+                                                      WHERE news_categories.category_id = '$categoryId' ORDER BY news.date DESC LIMIT 5");
         $newsArrayQuery->setFetchMode(\PDO::FETCH_ASSOC);
         $arrayOfNews = $newsArrayQuery->fetchAll();
 

@@ -10,4 +10,5 @@ return array(
     'db\\db_categories' => $baseDir . '/db/db_categories.php',
     'db\\db_news' => $baseDir . '/db/db_news.php',
     'helpers\\category_builder' => $baseDir . '/helpers/category_builder.php',
+    'helpers\\pagination' => $baseDir . '/helpers/pagination.php',
 );
