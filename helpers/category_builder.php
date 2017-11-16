@@ -42,7 +42,7 @@ class category_builder
      * @param $nameOfCategory string
      * @return array of news (id,title,views,text,date) fields
      */
-    public function getArrayOfNewsByCategoryName ($nameOfCategory)
+    public function getArrayOfNewsByCategoryName ($nameOfCategory, $start=0)
     {
         $object = new db();
         $dbObject = $object->getConnection();
@@ -60,11 +60,12 @@ class category_builder
                                                       news.date
                                                       FROM news_categories 
                                                       JOIN news ON news.id = news_categories.news_id
-                                                      WHERE news_categories.category_id = '$categoryId' ORDER BY news.date DESC LIMIT 5");
+                                                      WHERE news_categories.category_id = '$categoryId' ORDER BY news.date DESC LIMIT {$start},5");
         $newsArrayQuery->setFetchMode(\PDO::FETCH_ASSOC);
         $arrayOfNews = $newsArrayQuery->fetchAll();
 
         return $arrayOfNews;
     }
+
 
 }

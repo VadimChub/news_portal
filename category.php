@@ -8,24 +8,48 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/my_style.css">
 </head>
 <body>
 
 <?php
 require 'vendor/autoload.php';
 
-use db\db;
-use helpers\pagination;
-
+use helpers\category_builder;
 
 //navbar
 include_once 'components/navbar.php';
-
-include 'helpers/pagination_builder.php';
-
 ?>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 central">
+<?php
+$newObj = new category_builder();
+$name = $_GET['name'];
+$startB = $_GET['start'];
 
+$arrayOfNews = $newObj->getArrayOfNewsByCategoryName($name,$startB);
+?>
+            <br>
+            <h1><?=$name?></h1>
+            <br>
+            <div class="list-group">
+                <? foreach ($arrayOfNews as $value) :?>
+                <a href="news.php?id=<?= $value['id']?>" class="list-group-item list-group-item-action"><?= $value['title']?></a>
+        <? endforeach; ?>
+            </div>
+            <br>
+<?php
+//pagination
+include 'components/pagination_builder.php';
+
+?>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
 
 
 

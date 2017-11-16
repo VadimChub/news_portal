@@ -35,6 +35,21 @@ $(document).ready(function() {
 
     readyIt();
 
+    function lastButton() {
+        var current = $('.current-button').html();
+        var last = $('.last-button').html();
+        if(current == last){
+            $('.next-button').prop('disabled', true);
+            $('.last-button').hide();
+        }
+        else {
+            $('.next-button').prop('disabled', false);
+            $('.last-button').show();
+        }
+    }
+
+    lastButton();
+
 
 
 });

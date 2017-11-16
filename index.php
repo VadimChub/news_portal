@@ -18,7 +18,7 @@
     include_once 'components/navbar.php';
 
     //categories
-    include_once 'helpers/mainPageCategories.php';
+    include_once 'components/mainPageCategories.php';
 
 
 ?>

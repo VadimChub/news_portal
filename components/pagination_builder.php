@@ -22,7 +22,7 @@ $lastPage = ($last*5)-5;
 ?>
 
 
-<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+<div class="btn-group pagination" role="group" aria-label="Button group with nested dropdown">
     <a href="<?=$hrefBase."$previous"?>"><button type="button" class="btn btn-light back-button">Back</button></a>
     <a href="<?=$hrefBase."0"?>"><button type="button" class="btn btn-light first-button">1</button></a>
     <a href=""><button type="button" class="btn btn-secondary current-button"><?=$current?></button></a>
@@ -43,6 +43,6 @@ $lastPage = ($last*5)-5;
     </div>
 
 
-    <a href="<?=$hrefBase."$lastPage"?>"><button type="button" class="btn btn-light"><?=$last?></button></a>
+    <a href="<?=$hrefBase."$lastPage"?>"><button type="button" class="btn btn-light last-button"><?=$last?></button></a>
     <a href="<?php if($next <= $newsQuantity){ echo $hrefBase."$next";}?>"><button type="button" class="btn btn-light next-button">Next</button></a>
 </div>
