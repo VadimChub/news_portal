@@ -114,6 +114,50 @@ class db_news extends db
         }
     }
 
+    public function getNewInfo ($newId)
+    {
+        $connection = $this->getConnection();
+
+        $newQuery = $connection->query("SELECT * FROM news WHERE id = {$newId}");
+        $newQuery->setFetchMode(2);
+        $result = $newQuery->fetch();
+        return $result;
+    }
+
+    public function getImages ($newId)
+    {
+        $connection = $this->getConnection();
+
+        $queryImgId = $connection->query("SELECT img_id FROM news_images WHERE news_id = {$newId}");
+        $queryImgId->setFetchMode(2);
+        $result = $queryImgId->fetchAll();
+        $waysArray = array();
+        foreach ($result as $item){
+            $waysQuery = $connection->query("SELECT way FROM images WHERE id = $item[img_id]");
+            $waysQuery->setFetchMode(2);
+            $way = $waysQuery->fetch();
+            array_push($waysArray, $way['way']);
+        }
+        return $waysArray;
+    }
+
+    public function getTags ($newId)
+    {
+        $connection = $this->getConnection();
+
+        $queryTagId = $connection->query("SELECT tag_id FROM news_tags WHERE news_id = {$newId}");
+        $queryTagId->setFetchMode(2);
+        $result = $queryTagId->fetchAll();
+        $waysArray = array();
+        foreach ($result as $item){
+            $waysQuery = $connection->query("SELECT tag_name FROM tags WHERE id = $item[tag_id]");
+            $waysQuery->setFetchMode(2);
+            $way = $waysQuery->fetch();
+            array_push($waysArray, $way['tag_name']);
+        }
+        return $waysArray;
+    }
+
 
 }
 
