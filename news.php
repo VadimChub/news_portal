@@ -24,12 +24,14 @@ $arrayOfTags = $obj->getTags($newId);
 $arrayOfImages = $obj->getImages($newId);
 $arrayOfInfo = $obj->getNewInfo($newId);
 
+//нужно вычислить категорию и если это аналитика то закрыть ее
+
 ?>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3"></div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 titles">
             <br>
             <h1><?=$arrayOfInfo['title']?></h1>
 
@@ -70,6 +72,23 @@ $arrayOfInfo = $obj->getNewInfo($newId);
                     </a>
                 </div>
             <?php endif; ?>
+            <br>
+            <div class="text"><?=$arrayOfInfo['text'];?></div>
+            <br>
+            <!-- Views block -->
+            <div class="alert alert-light test1" role="alert">
+                Views:<span><i class="readed" newId = "<?=$newId;?>"><?=$arrayOfInfo['views']?></i></span> <span>Reading now:<i class="reading-now"></i></span>
+            </div>
+            <br>
+
+            <div class="tags">
+                <h5>Tags:</h5>
+               <?php foreach ($arrayOfTags as $tag) : ?>
+                <a href="news_by_tag.php?tagname=<?=$tag;?>"><span class="badge badge-pill badge-secondary"><?=$tag;?></span></a>
+                <?php endforeach; ?>
+            </div>
+            <br>
+
 
         </div>
         <div class="col-sm-3"></div>

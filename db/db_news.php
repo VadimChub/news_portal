@@ -158,6 +158,25 @@ class db_news extends db
         return $waysArray;
     }
 
+    public function getNewsIdByTagName ($tagName)
+    {
+        $connection = $this->getConnection();
+
+        $queryTagId = $connection->query("SELECT id FROM tags WHERE tag_name = '$tagName'");
+        $queryTagId->setFetchMode(2);
+        $tag = $queryTagId->fetch();
+        $tag = $tag['id'];
+
+        $newsIdQuery = $connection->query("SELECT news_id FROM news_tags WHERE tag_id = '$tag'");
+        $newsIdQuery->setFetchMode(2);
+        $newsId = $newsIdQuery->fetchAll();
+        $result = array();
+        foreach ($newsId as $item){
+            array_push($result,$item['news_id']);
+        }
+        return $result;
+    }
+
 
 }
 

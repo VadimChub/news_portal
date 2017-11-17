@@ -23,7 +23,7 @@ $connection = $dataBaseObject->getConnection();
 
     <? foreach ($arrayOfNews as $value) :?>
         <a href="news.php?id=<?= $value['id']?>" class="list-group-item list-group-item-action"><?= $value['title']?></a>
-        </div>
     <? endforeach; ?>
-
+    </div>
+    <br>
 <? endforeach;  ?>

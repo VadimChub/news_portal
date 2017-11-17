@@ -50,6 +50,26 @@ $(document).ready(function() {
 
     lastButton();
 
+    function readingNow () {
+        var id = $('.readed').attr('newId');
+        var min = 0;
+        var max = 5;
+        var rand = min - 0.5 + Math.random() * (max - min + 1)
+        rand = Math.round(rand);
+        $('.reading-now').html(rand);
+
+        $.post("helpers/set_views.php", { views: rand, id: id })
+            .done(function(data) {
+                $('.readed').html(data);
+            });
+
+
+    }
+
+    //setInterval(readingNow, 3000);
+
+
+
 
 
 });
