@@ -30,6 +30,7 @@
     //categories
     include_once 'components/mainPageCategories.php';
 
+
 ?>
         </div>
         <div class="col-sm-3"></div>

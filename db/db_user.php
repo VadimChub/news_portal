@@ -124,5 +124,21 @@ class db_user extends db
         session_destroy();
     }
 
+    /**
+     * @return array of id sorted by top comentators
+     */
+    public function topComentators()
+    {
+        $connection = $this->getConnection();
+        $query = $connection->query("SELECT user_id, COUNT(*) AS USERCOUNT FROM comments GROUP BY user_id ORDER BY USERCOUNT DESC");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        $topComentatorsId = array();
+        foreach ($result as $item){
+            array_push($topComentatorsId,$item['user_id']);
+        }
+        return $topComentatorsId;
+    }
+
 
 }
