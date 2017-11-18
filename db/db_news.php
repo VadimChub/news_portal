@@ -177,6 +177,30 @@ class db_news extends db
         return $result;
     }
 
+    /**
+     * @param $category string name of Category (first letter Big)
+     * @param $articleId int new id
+     * @return bool return TRUE if article belong to given category
+     */
+    public function checkCategory ($category, $articleId)
+    {
+        $connection = $this->getConnection();
+        $idOfCategoryQuery = $connection->query("SELECT id FROM categories WHERE category = '$category'");
+        $idOfCategoryQuery->setFetchMode(2);
+        $categoryId = $idOfCategoryQuery->fetch();
+        $categoryId = $categoryId['id'];
+
+        $query = $connection->query("SELECT news_id FROM news_categories WHERE category_id = '$categoryId'");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        foreach ($result as $item){
+            if ($item['news_id'] == $articleId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
 

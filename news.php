@@ -1,4 +1,5 @@
 <!doctype html>
+<?php session_start(); ?>
 <html lang="en">
 <head>
     <title>News</title>
@@ -73,7 +74,17 @@ $arrayOfInfo = $obj->getNewInfo($newId);
                 </div>
             <?php endif; ?>
             <br>
+            <?php $isAnalitic = $obj->checkCategory('Analitic',$newId); if (isset($_SESSION['user_name'])){ $isAnalitic = false;} ?>
+            <?php if ($isAnalitic): ?>
+                <?php $textArray = explode('.',$arrayOfInfo['text']); $limitedText = "";
+                for ($i=0; $i < 5; $i++){ $limitedText .= $textArray[$i]."."; }
+                $limitedText = $limitedText."<span class=\"card-text text-muted\"> ...to read more - Sing in!</span>"; ?>
+                <div class="text"><?=$limitedText?></div>
+            <?php endif;?>
+
+            <?php if(!$isAnalitic): ?>
             <div class="text"><?=$arrayOfInfo['text'];?></div>
+            <?php endif; ?>
             <br>
             <!-- Views block -->
             <div class="alert alert-light test1" role="alert">

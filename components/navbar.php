@@ -29,12 +29,19 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 btns" type="submit">Search</button>
         </form>
+        <?php if(isset($_SESSION['user_name'])) : ?>
+            Welcome, <?= $_SESSION['user_name']; ?>!
+            <a href="logout.php"><button class="btn btn-outline-danger my-2 my-sm-0 btns" type="submit">Log out</button></a>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['user_name'])) : ?>
         <form class="form-inline my-2 my-lg-0" action="login_user.php" method="post">
-            <input class="form-control mr-sm-2" name="name" type="text" placeholder="Login" aria-label="Search">
+            <input class="form-control mr-sm-2" name="email" type="text" placeholder="Login" aria-label="Search">
             <input class="form-control mr-sm-2" name="password" type="password" placeholder="******" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 btns" type="submit">Sign in</button>
+            <a href="registration.php"><button type="button" class="btn btn-outline-info">Registration</button></a>
         </form>
+        <?php endif;?>
     </div>
 </nav>

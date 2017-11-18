@@ -81,7 +81,48 @@ class db_user extends db
         else return false;
     }
 
+    /**
+     * @param $email string
+     * @param $pass string
+     * @return bool TRUE if user exist
+     */
+    public function loginUser ($email, $pass)
+    {
+        if (isset($email) && isset($pass) && $this->emailValidation($email)) {
+            $userEmail = (trim($email));
+            $userPass = $this->passwordMaker($pass);
 
+            if($this->checkUserExist($userEmail)){
+                $userInfo = $this->getUserInfoByEmail($userEmail);
+                if ($userPass == $userInfo['password']){
+                    $_SESSION['user_name'] = $userInfo['name'];
+                    $_SESSION['user_id'] = $userInfo['id'];
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    /**
+     * @param $email string
+     * @return mixed array of user info selected by email comparing
+     */
+    private function getUserInfoByEmail($email)
+    {
+        $connection = $this->getConnection();
+
+        $query = $connection->query("SELECT * FROM users WHERE email = '$email'");
+        $query->setFetchMode(2);
+        $result = $query->fetch();
+        return $result;
+    }
+
+    public function logOut()
+    {
+        session_destroy();
+    }
 
 
 }
