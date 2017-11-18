@@ -1,31 +1,5 @@
 $(document).ready(function() {
 
-    $(document).ready(function(){
-
-        $('a').on('mousedown', stopNavigate);
-
-        $('a').on('mouseleave', function () {
-            $(window).on('beforeunload', function(){
-                return 'Are you sure you want to leave?';
-            });
-        });
-    });
-
-    function stopNavigate(){
-        $(window).off('beforeunload');
-    }
-
-    $(window).on('beforeunload', function(){
-        return 'Are you sure you want to leave?';
-    });
-
-    $(window).on('unload', function(){
-
-        logout();
-
-    });
-
-
     $.extend({
         getUrlVars: function(){
             var vars = [], hash;
@@ -94,8 +68,48 @@ $(document).ready(function() {
 
     //setInterval(readingNow, 3000);
 
+    $('.comment-button').on('click', function () {
+        var user = user_id;
+        var article = $.getUrlVar('id');
+        var comtext = $('.comment-text').val();
+
+        if(comtext != '') {
+            $.post("savers/save_comment.php", {text: comtext, user: user, article: article})
+                .done(function (data) {
+                    $('.comment-text').val('');
+                    $('.empty').after(data);
+                });
+        }
+    });
 
 
+
+    $('.comment-p').hover(function () {
+        $(this).addClass('hover-text');
+    }, function () {
+        $(this).removeClass('hover-text');
+    });
+
+    $('.comment-plus').on('click',function () {
+        var autor = user_id;
+        var comid = $('.hover-text small').attr('comid');
+        var sign = "+";
+        $.post("savers/points_saver.php", {comentId: comid, user: autor, sign: sign})
+            .done(function (data) {
+                $('.hover-text label>span').html(data);
+            });
+    });
+
+    $('.comment-minus').on('click',function () {
+        var autor = user_id;
+        var comid = $('.hover-text small').attr('comid');
+        var sign = "-";
+        $.post("savers/points_saver.php", {comentId: comid, user: autor, sign: sign})
+            .done(function (data) {
+                //тут мы получаем количество поинтов
+                $('.hover-text label>span').html(data);
+            });
+    });
 
 
 });

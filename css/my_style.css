@@ -1,6 +1,7 @@
 .central { margin: 0 auto}
 .titles { text-align: center}
-.test1{text-align: right}
+.test1{text-align: right; margin-right: 10px}
 .text {text-align: left}
 .tags {text-align: left}
 .btns {margin-left: 10px; margin-right: 10px;}
+.commented-text {margin: 0 10px}

@@ -32,9 +32,9 @@ $arrayOfInfo = $obj->getNewInfo($newId);
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3"></div>
-        <div class="col-sm-6 titles">
+        <div class="col-sm-6">
             <br>
-            <h1><?=$arrayOfInfo['title']?></h1>
+            <h1 class="titles"><?=$arrayOfInfo['title']?></h1>
 
             <?php if ($arrayOfImages) : ?>
                 <?php
@@ -99,6 +99,8 @@ $arrayOfInfo = $obj->getNewInfo($newId);
                 <?php endforeach; ?>
             </div>
             <br>
+
+            <?php include 'components/comments.php';?>
 
 
         </div>
