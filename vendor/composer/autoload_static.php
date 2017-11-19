@@ -11,6 +11,7 @@ class ComposerStaticInit4ea85a20d343472f56a63632d4ac8067
         'db\\db_categories' => __DIR__ . '/../..' . '/db/db_categories.php',
         'db\\db_comment' => __DIR__ . '/../..' . '/db/db_comment.php',
         'db\\db_news' => __DIR__ . '/../..' . '/db/db_news.php',
+        'db\\db_settings' => __DIR__ . '/../..' . '/db/db_settings.php',
         'db\\db_user' => __DIR__ . '/../..' . '/db/db_user.php',
         'helpers\\category_builder' => __DIR__ . '/../..' . '/helpers/category_builder.php',
         'helpers\\pagination' => __DIR__ . '/../..' . '/helpers/pagination.php',

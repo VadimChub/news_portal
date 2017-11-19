@@ -114,6 +114,10 @@ class db_news extends db
         }
     }
 
+    /**
+     * @param $newId int id of new
+     * @return mixed array of new
+     */
     public function getNewInfo ($newId)
     {
         $connection = $this->getConnection();
@@ -124,6 +128,10 @@ class db_news extends db
         return $result;
     }
 
+    /**
+     * @param $newId int if of new
+     * @return array ways of images for current new
+     */
     public function getImages ($newId)
     {
         $connection = $this->getConnection();
@@ -141,6 +149,10 @@ class db_news extends db
         return $waysArray;
     }
 
+    /**
+     * @param $newId int of new
+     * @return array of tags for new
+     */
     public function getTags ($newId)
     {
         $connection = $this->getConnection();
@@ -158,6 +170,10 @@ class db_news extends db
         return $waysArray;
     }
 
+    /**
+     * @param $tagName string
+     * @return array of all news id
+     */
     public function getNewsIdByTagName ($tagName)
     {
         $connection = $this->getConnection();
@@ -201,7 +217,9 @@ class db_news extends db
         return false;
     }
 
-
+    /**
+     * @return array|bool Array of 3 last news with images way (miss all news without img), FALSE if not exist 3 news
+     */
     public function getNewsForMainSlider ()
     {
         $connection = $this->getConnection();
@@ -230,6 +248,19 @@ class db_news extends db
         return false;
     }
 
+    public function searchingInTags($val)
+    {
+        $connection = $this->getConnection();
+
+        $query = $connection->query("SELECT tag_name FROM tags WHERE tag_name LIKE '%$val%'");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        $final = array();
+        foreach ($result as $item){
+            array_push($final, $item['tag_name']);
+        }
+        return $final;
+    }
 
 
 }

@@ -66,7 +66,13 @@ $(document).ready(function() {
 
     }
 
+
+
+
     //setInterval(readingNow, 3000);
+
+
+
 
     $('.comment-button').on('click', function () {
         var user = user_id;
@@ -109,6 +115,32 @@ $(document).ready(function() {
                 //тут мы получаем количество поинтов
                 $('.hover-text label>span').html(data);
             });
+    });
+
+    //searching
+    $('.search-input').keyup(function () {
+        var searchval = $('.search-input').val();
+        $.post("helpers/searching.php", {search: searchval})
+            .done(function (data) {
+                $('.option-tempor').remove();
+                $('.option-empty').after(data);
+            });
+    });
+
+    $('.nav-change-standart').on('click', function () {
+        $.post("../helpers/settings.php", {mode: 0});
+    });
+
+    $('.nav-change-dark').on('click', function () {
+        $.post("../helpers/settings.php", {mode: 1});
+    });
+
+    $('.nav-change-primary').on('click', function () {
+        $.post("../helpers/settings.php", {mode: 2});
+    });
+
+    $('.nav-change-light').on('click', function () {
+        $.post("../helpers/settings.php", {mode: 3});
     });
 
 
