@@ -18,6 +18,7 @@
 
     //navbar
     include_once 'components/navbar.php';
+
 ?>
 
 <div class="container-fluid">
@@ -27,6 +28,9 @@
             <br>
 
 <?php
+    //slider
+    include_once 'components/mainpage_slider.php';
+
     //categories
     include_once 'components/mainPageCategories.php';
 

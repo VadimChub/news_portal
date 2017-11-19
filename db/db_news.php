@@ -202,6 +202,36 @@ class db_news extends db
     }
 
 
+    public function getNewsForMainSlider ()
+    {
+        $connection = $this->getConnection();
+        $finishArray = array();
+
+        $query = $connection->query("SELECT * FROM news ORDER BY `date` DESC");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        foreach ($result as $item) {
+            $img = $this->getImages($item['id']);
+            if (count($img) == 0) {continue;}
+                if (count($img) > 1) {
+                    $imgway = $img[0];
+                    array_push($item,$imgway);
+                    array_push($finishArray,$item);
+                }
+                if(count($img) == 1){
+                array_push($item,$img[0]);
+                array_push($finishArray,$item);
+                }
+
+                if(count($finishArray) == 3){
+                    return $finishArray;
+                }
+        }
+        return false;
+    }
+
+
+
 }
 
 
