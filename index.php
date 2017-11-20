@@ -23,9 +23,11 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
-            <br>
+        <div class="col-sm-2">
+<?php include 'components/advert_left.php'?>
+        </div>
+        <div class="col-sm-8">
+
 
 <?php
     //slider
@@ -37,7 +39,9 @@
 
 ?>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+            <?php include 'components/advert_right.php'?>
+        </div>
     </div>
 </div>
 

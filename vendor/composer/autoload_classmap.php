@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'db\\db' => $baseDir . '/db/db.php',
+    'db\\db_advert' => $baseDir . '/db/db_advert.php',
     'db\\db_categories' => $baseDir . '/db/db_categories.php',
     'db\\db_comment' => $baseDir . '/db/db_comment.php',
     'db\\db_news' => $baseDir . '/db/db_news.php',

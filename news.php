@@ -31,8 +31,8 @@ $arrayOfInfo = $obj->getNewInfo($newId);
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
+        <div class="col-sm-2"><br><br><?php include 'components/advert_left.php'?></div>
+        <div class="col-sm-8">
             <br>
             <h1 class="titles"><?=$arrayOfInfo['title']?></h1>
 
@@ -104,7 +104,7 @@ $arrayOfInfo = $obj->getNewInfo($newId);
 
 
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-2"><br><br><?php include 'components/advert_right.php'?></div>
     </div>
 </div>
 

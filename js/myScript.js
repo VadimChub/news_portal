@@ -126,7 +126,7 @@ $(document).ready(function() {
                 $('.option-empty').after(data);
             });
     });
-
+//navbar color change
     $('.nav-change-standart').on('click', function () {
         $.post("../helpers/settings.php", {mode: 0});
     });
@@ -141,6 +141,20 @@ $(document).ready(function() {
 
     $('.nav-change-light').on('click', function () {
         $.post("../helpers/settings.php", {mode: 3});
+    });
+
+    // advert changing
+    $('.advert').hover(function () {
+        $(this).addClass('hover-advert');
+        var price = $('.hover-advert span').html();
+        var discount = price/10;
+        $('.hover-advert span').html(price-discount).css({'font-size':'2rem','color':'#ff0000'});
+        $('.hover-advert #discount').show(2000);
+    }, function () {
+        var discountPrice = $('.hover-advert span').html();
+        $('.hover-advert span').html(Math.round((discountPrice/90)*100)).css({'font-size':'1rem','color':'#212529'});
+        $('.hover-advert #discount').hide(2000);
+        $(this).removeClass('hover-advert');
     });
 
 

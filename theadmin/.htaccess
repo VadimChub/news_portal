@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "Thats protected Area!"
+AuthUserFile /Applications/XAMPP/xamppfiles/htdocs/news_portal/theadmin/.htpasswd
+Require valid-user
+<Files .htpasswd>
+   deny from all  #запрет доступа из браузера к .htpasswd
+</Files>
