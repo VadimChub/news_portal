@@ -24,8 +24,8 @@ include_once 'components/navbar.php';
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4 central">
+        <div class="col-sm-2"><?php include 'components/advert_left.php'?></div>
+        <div class="col-sm-8 central">
 <?php
 $newObj = new category_builder();
 $name = $_GET['name'];
@@ -48,7 +48,7 @@ include 'components/pagination_builder.php';
 
 ?>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-2"><?php include 'components/advert_right.php'?></div>
     </div>
 </div>
 

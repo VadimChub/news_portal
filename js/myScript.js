@@ -54,7 +54,7 @@ $(document).ready(function() {
         var id = $('.readed').attr('newId');
         var min = 0;
         var max = 5;
-        var rand = min - 0.5 + Math.random() * (max - min + 1)
+        var rand = min - 0.5 + Math.random() * (max - min + 1);
         rand = Math.round(rand);
         $('.reading-now').html(rand);
 
@@ -156,6 +156,39 @@ $(document).ready(function() {
         $('.hover-advert #discount').hide(2000);
         $(this).removeClass('hover-advert');
     });
+
+
+
+    $('.comment-p #reply').on('click', function () {
+        $('form.sub-comment-form').remove();
+        $('.reply-action').removeClass();
+        $(this).addClass('reply-action');
+        $.post("components/reply_form.php")
+            .done(function (data) {
+                $('.reply-action').after(data);
+            });
+    });
+
+    //не забыть при нажатии на кнопку реплай удалять сам блок реплая
+
+
+    $("body").on("click", ".sub-comment-button1", function () {
+        var user = user_id;
+        var commentId = $('.hover-text #commentator-info').attr('comid');
+        var subcomtext = $('.reply-text').val();
+        if(subcomtext != '') {
+            $.post("savers/save_sub_comment.php", {text: subcomtext, comment: commentId, user: user})
+                .done(function (data) {
+                    $('form.sub-comment-form').after(data);
+                    $('form.sub-comment-form').remove();
+                });
+        }
+    });
+
+
+
+
+
 
 
 });

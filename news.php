@@ -99,8 +99,9 @@ $arrayOfInfo = $obj->getNewInfo($newId);
                 <?php endforeach; ?>
             </div>
             <br>
-
+            <?php if (isset($_SESSION['user_name'])) : ?>
             <?php include 'components/comments.php';?>
+            <?php endif; ?>
 
 
         </div>

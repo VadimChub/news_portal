@@ -6,7 +6,14 @@
 .btns {margin-left: 10px; margin-right: 10px;}
 .commented-text {margin: 0 10px}
 
-
 .discount{text-align: center; display: none}
 .discount-title {color: aquamarine}
 .discount-procent{color: brown; font-size: 2rem}
+
+.comment-minus{cursor: pointer}
+.comment-plus{cursor: pointer}
+.additional-reply{cursor: pointer}
+
+.sub-ul{width: 90%; float: right}
+.sub-comment-button {float: right}
+

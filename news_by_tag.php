@@ -25,8 +25,8 @@ include_once 'components/navbar.php';
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+        <div class="col-sm-2"><?php include 'components/advert_left.php'?></div>
+        <div class="col-sm-8">
             <?php
             $obj = new db_news();
             $name = $_GET['tagname'];
@@ -51,7 +51,7 @@ include_once 'components/navbar.php';
 
             ?>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-2"><?php include 'components/advert_right.php'?></div>
     </div>
 </div>
 

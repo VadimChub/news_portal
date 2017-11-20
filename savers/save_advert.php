@@ -14,3 +14,5 @@ $position = $_POST['position'];
 $advertObj = new db_advert();
 
 $advertObj->updateAdvert($position, $title, $price, $owner);
+
+header("Location: http://".$_SERVER['HTTP_HOST']."/news_portal/theadmin/add_advert.php");

@@ -148,9 +148,70 @@ HERE;
         $query = $connection->query("SELECT COUNT(*) FROM comment_points WHERE comment_id = '$commentId'");
         $query->setFetchMode(2);
         $res = $query->fetch();
-        return intval($res['COUNT(*)']);
+        $result = intval($res['COUNT(*)']);
+        $connection->query("UPDATE comments SET points = '$result' WHERE id = '$commentId'");
+        return $result;
 
     }
+
+
+    public function getAllSubComments ($commentId)
+    {
+        $connection = $this->getConnection();
+
+        $query = $connection->query("SELECT * FROM subcomment WHERE comment_id = '$commentId' ORDER BY `date` DESC");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+
+        return $result;
+    }
+
+    public function saveSubComment ($text, $userId, $commentId)
+    {
+        $connection = $this->getConnection();
+
+        $text = htmlentities(trim($text));
+
+        if($text == ""){ return false;}
+
+
+        $res = $connection->query("INSERT INTO subcomment (text, user_id, comment_id) VALUES ('$text', '$userId', '$commentId')");
+
+        if($res){
+            return true;
+        }
+        return false;
+    }
+
+
+    public function makeSubComment ($commentId)
+    {
+        $conneection = $this->getConnection();
+
+        $query = $conneection->query("SELECT * FROM subcomment WHERE id = '$commentId'");
+        $query->setFetchMode(2);
+        $array = $query->fetch();
+        $nameOfCommentator = $this->getCommentatorName($array['user_id']);
+
+        return <<<HERE
+ <li class="list-group-item list-group-item-secondary sub-comment">
+                        <small id="comment-info" subcomid="$array[id]" class="form-text text-muted">$array[date] | $nameOfCommentator</small>
+                        $array[text]
+                    </li>
+HERE;
+    }
+
+    public function getSubCommentId ($text, $userId, $commentId)
+    {
+        $connection = $this->getConnection();
+        $text = htmlentities(trim($text));
+
+        $query = $connection->query("SELECT id FROM subcomment WHERE text = '$text' AND user_id = '$userId' AND comment_id = '$commentId'");
+        $query->setFetchMode(2);
+        $result = $query->fetch();
+        return $result['id'];
+    }
+
 
 
 
