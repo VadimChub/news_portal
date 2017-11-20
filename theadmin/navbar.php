@@ -12,7 +12,7 @@
                 <a class="nav-link" href="add_news.php">Add new post</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="add_advert.php">Advert</a>
             </li>
         </ul>
         <span class="navbar-text">
