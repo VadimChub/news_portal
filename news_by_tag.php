@@ -44,16 +44,11 @@ include_once 'components/navbar.php';
             </div>
 
             <br>
-            <?php
-            die;
-            //pagination
-            include 'components/pagination_builder.php';
-
-            ?>
         </div>
         <div class="col-sm-2"><?php include 'components/advert_right.php'?></div>
     </div>
 </div>
+<?php include 'components/footer.php'?>
 
 
 

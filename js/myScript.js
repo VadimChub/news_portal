@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 
 
-    //setInterval(readingNow, 3000);
+    setInterval(readingNow, 3000);
 
 
 
@@ -169,7 +169,7 @@ $(document).ready(function() {
             });
     });
 
-    //не забыть при нажатии на кнопку реплай удалять сам блок реплая
+
 
 
     $("body").on("click", ".sub-comment-button1", function () {
@@ -186,8 +186,27 @@ $(document).ready(function() {
     });
 
 
+    //are you really want to leave?
+        $('a').each(function () {
+            $(this).click(function () {
+                $(window).on('beforeunload', function () {
+                    alert(back);   //this alerts true
+                    if(back==true)
+                        return false;
+                });
+            });
+        });
+
+    $(window).on('beforeunload', function(){
+        return "Are you really want to leave?";
+    });
 
 
+        function modal() {
+            $('#bg_popup').css({'display':'block'});
+        }
+
+    setTimeout(modal, 15000);
 
 
 

@@ -130,7 +130,7 @@ class db_user extends db
     public function topComentators()
     {
         $connection = $this->getConnection();
-        $query = $connection->query("SELECT user_id, COUNT(*) AS USERCOUNT FROM comments GROUP BY user_id ORDER BY USERCOUNT DESC");
+        $query = $connection->query("SELECT user_id, COUNT(*) AS USERCOUNT FROM comments GROUP BY user_id ORDER BY USERCOUNT DESC LIMIT 5");
         $query->setFetchMode(2);
         $result = $query->fetchAll();
         $topComentatorsId = array();
@@ -138,6 +138,26 @@ class db_user extends db
             array_push($topComentatorsId,$item['user_id']);
         }
         return $topComentatorsId;
+    }
+
+    public function getUserInfo($id)
+    {
+        $connection = $this->getConnection();
+        $query = $connection->query("SELECT * FROM users WHERE id = '$id'");
+        $query->setFetchMode(2);
+        $result = $query->fetch();
+        return $result;
+    }
+
+    public function countCommentsForUser ($userId)
+    {
+        $connection = $this->getConnection();
+
+        $query = $connection->query("SELECT COUNT(*) FROM comments WHERE user_id = '$userId'");
+        $query->setFetchMode(2);
+        $res = $query->fetch();
+        $result = intval($res['COUNT(*)']);
+        return $result;
     }
 
 

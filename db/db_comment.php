@@ -76,6 +76,21 @@ HERE;
     }
 
     /**
+     * @param $articleId int
+     * @return array of all comment for new
+     */
+    public function getAllCommentsByUserId ($userId)
+    {
+        $connection = $this->getConnection();
+
+        $query = $connection->query("SELECT * FROM comments WHERE user_id = '$userId' ORDER BY points DESC, `date` DESC");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+
+        return $result;
+    }
+
+    /**
      * @param $id int
      * @return mixed string name of commentator
      */
@@ -211,6 +226,8 @@ HERE;
         $result = $query->fetch();
         return $result['id'];
     }
+
+
 
 
 

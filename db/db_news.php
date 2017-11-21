@@ -262,6 +262,32 @@ class db_news extends db
         return $final;
     }
 
+    /**
+     * @return array of 3 top commented new during last day
+     */
+    public function topNews()
+    {
+        $connection = $this->getConnection();
+        $query = $connection->query("SELECT new_id, COUNT(*) AS NEWCOUNT FROM comments WHERE `date` >= (NOW()-(60*60*60*24)) GROUP BY new_id ORDER BY NEWCOUNT DESC LIMIT 3");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        $topNewsId = array();
+        foreach ($result as $item){
+            array_push($topNewsId,$item['new_id']);
+        }
+        return $topNewsId;
+    }
+
+    public function timeTester()
+    {
+        $connection = $this->getConnection();
+        $query = $connection->query("SELECT new_id, COUNT(*) AS NEWCOUNT FROM comments WHERE `date` >= (NOW()-1) GROUP BY new_id ORDER BY NEWCOUNT DESC LIMIT 3");
+        $query->setFetchMode(2);
+        $result = $query->fetchAll();
+        return $result;
+
+    }
+
 
 }
 

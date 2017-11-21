@@ -77,7 +77,8 @@ $arrayOfInfo = $obj->getNewInfo($newId);
             <?php $isAnalitic = $obj->checkCategory('Analitic',$newId); if (isset($_SESSION['user_name'])){ $isAnalitic = false;} ?>
             <?php if ($isAnalitic): ?>
                 <?php $textArray = explode('.',$arrayOfInfo['text']); $limitedText = "";
-                for ($i=0; $i < 5; $i++){ $limitedText .= $textArray[$i]."."; }
+                $counter = count($textArray); $limit = 5; if ($counter < 5){$limit = $counter;};
+                for ($i=0; $i < $limit; $i++){ $limitedText .= $textArray[$i]."."; }
                 $limitedText = $limitedText."<span class=\"card-text text-muted\"> ...to read more - Sing in!</span>"; ?>
                 <div class="text"><?=$limitedText?></div>
             <?php endif;?>
@@ -108,7 +109,7 @@ $arrayOfInfo = $obj->getNewInfo($newId);
         <div class="col-sm-2"><br><br><?php include 'components/advert_right.php'?></div>
     </div>
 </div>
-
+<?php include 'components/footer.php'?>
 
 
 

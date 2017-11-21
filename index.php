@@ -36,6 +36,11 @@
     //categories
     include_once 'components/mainPageCategories.php';
 
+    //top commentators
+    include_once 'components/top_comentators.php';
+
+    //top news
+    include_once 'components/top_news.php';
 
 ?>
         </div>
@@ -44,8 +49,7 @@
         </div>
     </div>
 </div>
-
-
+<?php include 'components/footer.php'?>
 
 
 
